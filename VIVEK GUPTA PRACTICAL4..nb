@@ -1,0 +1,632 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16437,        622]
+NotebookOptionsPosition[     14013,        529]
+NotebookOutlinePosition[     14359,        544]
+CellTagsIndexPosition[     14316,        541]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Vivek gupta | BSc CS Hons | 20211467 | Practical-4", "Title",
+ CellChangeTimes->{{3.878617663140587*^9, 3.8786177132658005`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "Section",
+ CellChangeTimes->{{3.87861791431293*^9, 3.8786179309274178`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Method of Variation of Parameters
+
+QUESTION 1 : Solve second order differential equation y\[CloseCurlyQuote]\
+\[CloseCurlyQuote][x]+y[x]=tan[x] by 
+method of variation of parameter
+Solution:
+Step -1: Find complementary function
+
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786179414515944`*^9, 3.8786180047078295`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"eqn", ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+    RowBox[{"y", "[", "x", "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{"Tan", "[", "x", "]"}]}], ";"}], "\n", 
+ RowBox[{"P", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{
+    RowBox[{"eqn", " ", "==", "0"}], ",", 
+    RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}], "\n"}], "Input",
+ CellChangeTimes->{{3.8786180248828125`*^9, 3.878618043490365*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"y", "[", "x", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"C", "[", "1", "]"}], " ", 
+      RowBox[{"Cos", "[", "x", "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"C", "[", "2", "]"}], " ", 
+      RowBox[{"Sin", "[", "x", "]"}]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.8786180265461473`*^9, 3.878618045547054*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -2 Consider fundamental solution function u(x) and v(x)
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786180863752975`*^9, 3.8786180877314663`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"u", "[", "x_", "]"}], ":=", 
+   RowBox[{"Cos", "[", "x", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"v", "[", "x_", "]"}], ":=", 
+   RowBox[{"Sin", "[", "x", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8786180996445055`*^9, 3.8786180996455045`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -3 Find Wronskian W = ( { u[x] , v[x] } , { u\[CloseCurlyQuote][x] , v\
+\[CloseCurlyQuote][x] })
+\
+\>", "Subsection",
+ CellChangeTimes->{3.878618132248947*^9, 3.8786183638515797`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"w", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"Det", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", "x", "]"}], ",", 
+        RowBox[{"v", "[", "x", "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "'"}], "[", "x", "]"}], ",", 
+        RowBox[{
+         RowBox[{"v", "'"}], "[", "x", "]"}]}], "}"}]}], "}"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.8786184163366995`*^9, 3.8786184476367054`*^9}}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.8786184490457563`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -4 Find g[x]= (-v[x]f[x])/w and h[x] = (u[x] f[x])/w
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786185101038666`*^9, 3.878618517322747*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"v", "[", "x", "]"}]}], "\[Times]", 
+     RowBox[{"f", "[", "x", "]"}]}], ")"}], "/", "w"}]}], "\n", 
+ RowBox[{
+  RowBox[{"h", "[", "x", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "\[Times]", 
+     RowBox[{"f", "[", "x", "]"}]}], ")"}], "/", "w"}]}], "\n"}], "Input",
+ CellChangeTimes->{{3.878618529470285*^9, 3.8786185294712763`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -5 Find G = Integrate[g[x],x] and H=Integrate[h[x],x]
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.878618584166607*^9, 3.878618585295377*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"G", "=", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"g", "[", "x", "]"}], ",", "x"}], "]"}]}], "\n", 
+ RowBox[{"H", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"h", "[", "x", "]"}], ",", "x"}], "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8786185995340786`*^9, 3.878618599536193*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Log", "[", 
+   RowBox[{
+    RowBox[{"Cos", "[", 
+     FractionBox["x", "2"], "]"}], "-", 
+    RowBox[{"Sin", "[", 
+     FractionBox["x", "2"], "]"}]}], "]"}], "-", 
+  RowBox[{"Log", "[", 
+   RowBox[{
+    RowBox[{"Cos", "[", 
+     FractionBox["x", "2"], "]"}], "+", 
+    RowBox[{"Sin", "[", 
+     FractionBox["x", "2"], "]"}]}], "]"}], "+", 
+  RowBox[{"Sin", "[", "x", "]"}]}]], "Output",
+ CellChangeTimes->{3.878618600752055*^9}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  RowBox[{"Cos", "[", "x", "]"}]}]], "Output",
+ CellChangeTimes->{3.878618600753118*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -6 Find PI=u[x]G+v[x]H
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.878618624773837*^9, 3.878618626209208*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PI", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"u", "[", "x", "]"}], " ", "G"}], "+", 
+   RowBox[{
+    RowBox[{"v", "[", "x", "]"}], " ", "H"}]}]}]], "Input",
+ CellChangeTimes->{{3.878618634234457*^9, 3.878618634237492*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"Cos", "[", "x", "]"}]}], " ", 
+   RowBox[{"Sin", "[", "x", "]"}]}], "+", 
+  RowBox[{
+   RowBox[{"Cos", "[", "x", "]"}], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{
+       RowBox[{"Cos", "[", 
+        FractionBox["x", "2"], "]"}], "-", 
+       RowBox[{"Sin", "[", 
+        FractionBox["x", "2"], "]"}]}], "]"}], "-", 
+     RowBox[{"Log", "[", 
+      RowBox[{
+       RowBox[{"Cos", "[", 
+        FractionBox["x", "2"], "]"}], "+", 
+       RowBox[{"Sin", "[", 
+        FractionBox["x", "2"], "]"}]}], "]"}], "+", 
+     RowBox[{"Sin", "[", "x", "]"}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.8786186357179804`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+QUESTION 2 : Solve second order differential equation y\[CloseCurlyQuote]\
+\[CloseCurlyQuote][x]-2y\[CloseCurlyQuote][x]=e^x Sin[x] by 
+method of variation of parameter
+Step -1: Find complementary function
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.878618663782123*^9, 3.8786186655049086`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"eqn", ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "''"}], "[", "x", "]"}], "-", 
+    RowBox[{"2", " ", 
+     RowBox[{
+      RowBox[{"y", "'"}], "[", "x", "]"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"e", "^", "x"}], "*", 
+    RowBox[{"Sin", "[", "x", "]"}]}]}], ";"}], "\n", 
+ RowBox[{"P", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{
+    RowBox[{"eqn", " ", "\:2a75", " ", "0"}], ",", 
+    RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8786186816960278`*^9, 3.8786187000670557`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"0\\\"}]\\) in the first argument \
+\\!\\(\\*RowBox[{\\\"0\\\"}]\\).\"",2,19,5,31115076255367671282,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.878618701612465*^9}],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{"0", ",", 
+   RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]], "Output",
+ CellChangeTimes->{3.878618701612938*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -2 Consider fundamental solution function u(x) and v(x)
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786187303104124`*^9, 3.8786187317450294`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"u", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"1", "/", "2"}], " ", 
+   RowBox[{"Exp", "[", 
+    RowBox[{"2", " ", "x"}], "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"v", "[", "x_", "]"}], ":=", "1"}]}], "Input",
+ CellChangeTimes->{{3.8786187465073023`*^9, 3.8786187465104065`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -3 Find Wronskian W = ( { u[x] , v[x] } , { u\[CloseCurlyQuote][x] , v\
+\[CloseCurlyQuote][x] })\
+\>", "Subsection",
+ CellChangeTimes->{3.878618788982834*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"w", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"Det", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", "x", "]"}], ",", 
+        RowBox[{"v", "[", "x", "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "'"}], "[", "x", "]"}], ",", 
+        RowBox[{
+         RowBox[{"v", "'"}], "[", "x", "]"}]}], "}"}]}], "}"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.87861881250556*^9, 3.8786188125077896`*^9}}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.878618813908724*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -4 Find g[x]= (-v[x]f[x])/w and h[x] = (u[x] f[x])/w
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786189773821297`*^9, 3.878618979179216*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"v", "[", "x", "]"}]}], "\[Times]", 
+     RowBox[{"f", "[", "x", "]"}]}], ")"}], "/", "w"}]}], "\n", 
+ RowBox[{
+  RowBox[{"h", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "\[Times]", 
+     RowBox[{"f", "[", "x", "]"}]}], ")"}], "/", "w"}]}]}], "Input",
+ CellChangeTimes->{{3.878618990251177*^9, 3.8786189902528515`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -5 Find G = Integrate[g[x],x] and H=Integrate[h[x],x]
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.878619043398321*^9, 3.878619044893613*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"G", "=", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"g", "[", "x", "]"}], ",", "x"}], "]"}]}], "\n", 
+ RowBox[{"H", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"h", "[", "x", "]"}], ",", "x"}], "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8786190552424307`*^9, 3.8786190552451315`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["e", "x"], " ", 
+    RowBox[{"(", 
+     RowBox[{"4", "+", 
+      SuperscriptBox[
+       RowBox[{"Log", "[", "e", "]"}], "2"], "-", 
+      RowBox[{
+       RowBox[{"Cos", "[", 
+        RowBox[{"2", " ", "x"}], "]"}], " ", 
+       SuperscriptBox[
+        RowBox[{"Log", "[", "e", "]"}], "2"]}], "-", 
+      RowBox[{"2", " ", 
+       RowBox[{"Log", "[", "e", "]"}], " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"2", " ", "x"}], "]"}]}]}], ")"}]}], 
+   RowBox[{"2", " ", 
+    RowBox[{"Log", "[", "e", "]"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"4", "+", 
+      SuperscriptBox[
+       RowBox[{"Log", "[", "e", "]"}], "2"]}], ")"}]}]]}]], "Output",
+ CellChangeTimes->{3.878619056453143*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   SuperscriptBox["e", "x"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"Log", "[", "e", "]"}], " ", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", " ", "x"}], "]"}]}]}], ")"}]}], 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    RowBox[{"4", "+", 
+     SuperscriptBox[
+      RowBox[{"Log", "[", "e", "]"}], "2"]}], ")"}]}]]], "Output",
+ CellChangeTimes->{3.8786190564726453`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Step -6 Find PI=u[x]G+v[x]H
+\
+\>", "Subsection",
+ CellChangeTimes->{{3.8786190743421607`*^9, 3.8786190756298056`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PI", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"u", "[", "x", "]"}], " ", "G"}], "+", 
+   RowBox[{
+    RowBox[{"v", "[", "x", "]"}], " ", "H"}]}]}]], "Input",
+ CellChangeTimes->{{3.8786190887301865`*^9, 3.878619088732215*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["e", "x"], " ", 
+     RowBox[{"Cos", "[", "x", "]"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"4", "+", 
+       SuperscriptBox[
+        RowBox[{"Log", "[", "e", "]"}], "2"], "-", 
+       RowBox[{
+        RowBox[{"Cos", "[", 
+         RowBox[{"2", " ", "x"}], "]"}], " ", 
+        SuperscriptBox[
+         RowBox[{"Log", "[", "e", "]"}], "2"]}], "-", 
+       RowBox[{"2", " ", 
+        RowBox[{"Log", "[", "e", "]"}], " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"2", " ", "x"}], "]"}]}]}], ")"}]}], 
+    RowBox[{"2", " ", 
+     RowBox[{"Log", "[", "e", "]"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"4", "+", 
+       SuperscriptBox[
+        RowBox[{"Log", "[", "e", "]"}], "2"]}], ")"}]}]]}], "+", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["e", "x"], " ", 
+    RowBox[{"Sin", "[", "x", "]"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"Log", "[", "e", "]"}], " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"2", " ", "x"}], "]"}]}]}], ")"}]}], 
+   RowBox[{"2", " ", 
+    RowBox[{"(", 
+     RowBox[{"4", "+", 
+      SuperscriptBox[
+       RowBox[{"Log", "[", "e", "]"}], "2"]}], ")"}]}]]}]], "Output",
+ CellChangeTimes->{3.878619089924138*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{989, 980},
+WindowMargins->{{Automatic, -6}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 135, 1, 101, "Title"],
+Cell[CellGroupData[{
+Cell[740, 27, 86, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[851, 32, 329, 11, 259, "Subsection"],
+Cell[CellGroupData[{
+Cell[1205, 47, 528, 16, 88, "Input"],
+Cell[1736, 65, 410, 12, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2195, 83, 161, 4, 79, "Subsection"],
+Cell[2359, 89, 314, 9, 50, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2710, 103, 198, 5, 79, "Subsection"],
+Cell[CellGroupData[{
+Cell[2933, 112, 536, 17, 30, "Input"],
+Cell[3472, 131, 72, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3593, 138, 156, 4, 79, "Subsection"],
+Cell[3752, 144, 521, 16, 69, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4310, 165, 155, 4, 79, "Subsection"],
+Cell[CellGroupData[{
+Cell[4490, 173, 370, 10, 50, "Input"],
+Cell[4863, 185, 464, 15, 43, "Output"],
+Cell[5330, 202, 117, 3, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5496, 211, 124, 4, 79, "Subsection"],
+Cell[CellGroupData[{
+Cell[5645, 219, 247, 7, 30, "Input"],
+Cell[5895, 228, 713, 23, 43, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6657, 257, 304, 7, 139, "Subsection"],
+Cell[CellGroupData[{
+Cell[6986, 268, 631, 20, 69, "Input"],
+Cell[7620, 290, 318, 7, 21, "Message"],
+Cell[7941, 299, 164, 4, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8154, 309, 161, 4, 79, "Subsection"],
+Cell[8318, 315, 317, 9, 50, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8672, 329, 173, 4, 49, "Subsection"],
+Cell[CellGroupData[{
+Cell[8870, 337, 533, 17, 30, "Input"],
+Cell[9406, 356, 70, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9525, 363, 156, 4, 79, "Subsection"],
+Cell[9684, 369, 516, 16, 50, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10237, 390, 155, 4, 79, "Subsection"],
+Cell[CellGroupData[{
+Cell[10417, 398, 372, 10, 50, "Input"],
+Cell[10792, 410, 764, 24, 52, "Output"],
+Cell[11559, 436, 554, 19, 51, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12162, 461, 128, 4, 79, "Subsection"],
+Cell[CellGroupData[{
+Cell[12315, 469, 249, 7, 30, "Input"],
+Cell[12567, 478, 1394, 45, 52, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
